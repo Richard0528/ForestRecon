@@ -1,6 +1,6 @@
 #bia_glo_data function
 
-load("ClumpedShape1.5Scale20.RData")
+load("../functions/ClumpedShape1.5Scale20.RData")
 
 biaglo.fn = function(cur.column=1, n.density, cur.qq=1, cur.q=1, cur.t=1)
 {
@@ -42,7 +42,6 @@ biaglo.fn = function(cur.column=1, n.density, cur.qq=1, cur.q=1, cur.t=1)
   gloMog.df = data.frame(matrix(NA, ncol = n.density, nrow = nsim)) 
   for(i in 1:n.density)
     gloMog.df[,i] = est.density.glo[[i]][,1]
-  c
   
   gloFR.df = data.frame(matrix(NA, ncol = n.density, nrow = nsim)) 
   for(i in 1:n.density)
@@ -84,11 +83,18 @@ biaglo.fn = function(cur.column=1, n.density, cur.qq=1, cur.q=1, cur.t=1)
 
 biaglo1.list<-biaglo.fn(n.density=length(tph))
 
-load("4kClumpedShape1.5Scale20.RData")
+load("../5k_data_done/4kClumpedShape1.5Scale20.RData")
 
 biaglo2.list<-biaglo.fn(n.density=length(tph))
 
-#list1<-list(a=c(0,1,2),b=c(3,4,5));
-#list2<-list(a=c(7,8,9),b=c(10,11,12));
 biaglo.list<-lapply(names(biaglo1.list),function(x) rbind(biaglo1.list[[x]],biaglo2.list[[x]]))
 names(biaglo.list)<-names(biaglo1.list)
+
+shape.vals<-seq(1,3,.25)
+scale.vals<-seq(20,50,10)
+i<-1
+j<-1
+filepath<-"../../Results/WithPCQDiam/Clumped/"
+load(paste(filepath,"ClumpedShape",shape.vals[i],"Scale",scale.vals[j],".RData",sep=""))
+load(paste(filepath,"Clumped4000/ClumpedShape",shape.vals[i],"Scale",scale.vals[j],".RData",sep=""))
+save(biaglo.list,file=paste("CombinedShape",shape.vals[i],"Scale",scale.vals[j],".RData",sep=""))
