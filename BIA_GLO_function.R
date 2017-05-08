@@ -92,9 +92,11 @@ names(biaglo.list)<-names(biaglo1.list)
 
 shape.vals<-seq(1,3,.25)
 scale.vals<-seq(20,50,10)
-i<-1
-j<-1
-filepath<-"../../Results/WithPCQDiam/Clumped/"
-load(paste(filepath,"ClumpedShape",shape.vals[i],"Scale",scale.vals[j],".RData",sep=""))
-load(paste(filepath,"Clumped4000/ClumpedShape",shape.vals[i],"Scale",scale.vals[j],".RData",sep=""))
-save(biaglo.list,file=paste("CombinedShape",shape.vals[i],"Scale",scale.vals[j],".RData",sep=""))
+filepath<-"../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+for (ii in 1:9)
+  {
+    for (jj in 1:4)
+      load(paste(filepath,"ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
+      load(paste(filepath,"Clumped4000/ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
+      save(biaglo.list,file=paste("CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
+  }
