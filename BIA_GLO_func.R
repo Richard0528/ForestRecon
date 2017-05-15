@@ -1,18 +1,8 @@
-#bia_glo_data function
-#loop throught whole datasets
+##
+  ##BIA_GLO function
 
-shape.vals<-seq(1,3,.25)
-scale.vals<-seq(20,50,10)
-filepath<-"../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
-
-for (ii in 1:9)
+biaglo.fn = function(cur.column=1, n.density, cur.qq=1, cur.q=1, cur.t=1)
 {
-  for (jj in 1:4)
-    {
-    load(paste(filepath,"ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
-
-    biaglo.fn = function(cur.column=1, n.density, cur.qq=1, cur.q=1, cur.t=1)
-    {
   bias1.df = data.frame(matrix(NA, ncol = n.density, nrow = nsim))
   for (i in 1:n.density)
     bias1.df[,i] = est.density.section.bia[[i]][,cur.column]
@@ -88,17 +78,4 @@ for (ii in 1:9)
   colnames(gloPCQUnCorr.df) = tph
   
   return(list(BIASec=bias1.df,BIAqq=biaqq1.df,BIAq=biaq1.df,BIAt=biat1.df,GLOMog=gloMog.df,GLOFR=gloFR.df,GLOBM=gloBM.df,GLOFir=gloFir.df,GLOPine=gloPine.df,GLOAllSpp=gloAllSpp.df,GLOPCQCorr=gloPCQCorr.df,GloPCQUnCorr=gloPCQUnCorr.df))
-}
-
-    biaglo1.list<-biaglo.fn(n.density=length(tph))
-
-    load(paste(filepath,"Clumped4000/ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
-
-    biaglo2.list<-biaglo.fn(n.density=length(tph))
-
-    biaglo.list<-lapply(names(biaglo1.list),function(x) rbind(biaglo1.list[[x]],biaglo2.list[[x]]))
-    names(biaglo.list)<-names(biaglo1.list)
-
-    save(biaglo.list,file=paste("CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
-    }
 }
