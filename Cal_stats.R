@@ -1,16 +1,20 @@
-
+tph.id<-1
 #cal_stats.fn = function()
 ##MSE
-MSEsection.df = data.frame(matrix(NA, ncol = 4, nrow = 10))
-sim.tph.all = rowSums(sim.density.section[[tph.id]])/4
-for (i in 1:10)
+MSEsection.fn<-function(ncol=4,nrow=10,sim.density.section,est.density.section.bia,nsim=4000)
 {
-  for (j in 1:4)
+  MSEsection.df = data.frame(matrix(NA, ncol = ncol, nrow = nrow))
+  for (i in 1:10)
   {
-    MSEsection.df[i,j] = sum((est.density.section.bia[[i]][,j] - sim.tph.all)^2)/nsim
+    sim.tph.all = rowSums(sim.density.section[[i]][,1:4])/4
+    for (j in 1:4)
+    {
+      MSEsection.df[i,j] = sum((est.density.section.bia[[i]][,j] - sim.tph.all)^2)/nsim
+    }
   }
+  colnames(MSEsection.df) = c('section 1', 'section 2', 'section 3', 'seciont 4')
+  return(MSEsection.df)
 }
-colnames(MSEsection.df) = c('section 1', 'section 2', 'section 3', 'seciont 4')
 
 MSEsection15.df = data.frame(matrix(NA, ncol = 4, nrow = 10))
 for (i in 1:10)
@@ -36,6 +40,7 @@ colnames(MSEsection10.df) = c('section 1', 'section 2', 'section 3', 'seciont 4'
 RMEsection.df = data.frame(matrix(NA, ncol = 4, nrow = 10))
 for (i in 1:10)
 {
+  sim.tph.all = rowSums(sim.density.section[[i]][,1:4])/4
   for (j in 1:4)
   {
     RMEsection.df[i,j] = sum((est.density.section.bia[[i]][,j] - sim.tph.all)/sim.tph.all)/nsim
@@ -67,6 +72,7 @@ colnames(RMEsection10.df) = c('section 1', 'section 2', 'section 3', 'seciont 4'
 RMAEsection.df = data.frame(matrix(NA, ncol = 4, nrow = 10))
 for (i in 1:10)
 {
+  sim.tph.all = rowSums(sim.density.section[[i]][,1:4])/4
   for (j in 1:4)
   {
     RMAEsection.df[i,j] = sum(abs(est.density.section.bia[[i]][,j] - sim.tph.all)/sim.tph.all)/nsim
