@@ -15,6 +15,9 @@ for (ii in 1:length(shape.vals))
   {
     load(paste(filepath,"ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
     
+    ##biaglo.list for 1000
+    biaglo1.list<-biaglo.fn(n.density=length(tph))
+    
     #sim.density.section
     Combined1_sim.list <- sim.density.section
     
@@ -26,11 +29,18 @@ for (ii in 1:length(shape.vals))
     
     load(paste(filepath,"Clumped4000/ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
     
+    ##biaglo.list for 4000
+    biaglo2.list<-biaglo.fn(n.density=length(tph))
+    
     #sim.density.section
     Combined2_sim.list <- sim.density.section
     #merge
     Combined_sim.list <- lapply(c(1:10),function(x) rbind(Combined1_sim.list[[x]],Combined2_sim.list[[x]]))
     names(Combined_sim.list)<-names(Combined1_sim.list)
+    
+    ##merge for biaglo.list
+    biaglo.list<-lapply(names(biaglo1.list),function(x) rbind(biaglo1.list[[x]],biaglo2.list[[x]]))
+    names(biaglo.list)<-names(biaglo1.list)
     
     #sim.density.section10
     Combined2_sim10.list <- sim.density.section10
