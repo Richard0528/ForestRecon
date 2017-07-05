@@ -92,3 +92,38 @@ GLOplot.fn = function(cal_method)
 # 
 # plot(1:ncol(MSE_fit_cal.list), MSE_fit_cal.list[4,])
 #?par
+
+#########
+# MK: plot by TPH, compare estimators
+dim(MSE_Fit_cal.list)
+pdf(file="TestPlot1.pdf")
+par(mfrow=c(3,3),las=2)
+for(i in 1:9)
+{  
+  plot(1:12,MSE_Fit_cal.list[i,],axes=FALSE,
+       ylim=c(min(MSE_Fit_cal.list[i,],MSE_Fit10_cal.list[i,],MSE_Fit15_cal.list[i,]),
+              max(MSE_Fit_cal.list[i,],MSE_Fit10_cal.list[i,],MSE_Fit15_cal.list[i,])),
+       main=paste("true tph=",tph[i]),ylab="MSE",xlab="")
+  axis(2)
+  axis(1,at=1:12,labels=names(MSE_Fit_cal.list))#,las=2)
+  points(1:12,MSE_Fit10_cal.list[i,],pch=16,col="blue")
+  points(1:12,MSE_Fit15_cal.list[i,],pch=16,col="forestgreen")
+  if(i==1)
+    legend(x="topleft",legend=c("All",expression(paste(dbh>=1,"0 cm")),expression(paste(dbh>=1,"5 cm"))),pch=c(1,16,16),col=c("black","blue","forestgreen"),cex=0.75)#,title="DBH threshold")
+}
+
+par(mfrow=c(3,3),las=2)
+for(i in 1:9)
+{  
+  plot(1:12,RME_Fit_cal.list[i,],axes=FALSE,
+       ylim=c(min(RME_Fit_cal.list[i,],RME_Fit10_cal.list[i,],RME_Fit15_cal.list[i,]),max(RME_Fit_cal.list[i,],RME_Fit10_cal.list[i,],RME_Fit15_cal.list[i,])),
+       main=paste("true tph=",tph[i]),ylab="RME",xlab="")
+  axis(2)
+  axis(1,at=1:12,labels=names(RME_Fit_cal.list))#,las=2)
+  points(1:12,RME_Fit10_cal.list[i,],pch=16,col="blue")
+  points(1:12,RME_Fit15_cal.list[i,],pch=16,col="forestgreen")
+  if(i==1)
+    legend(x="topleft",legend=c("All",expression(paste(dbh>=1,"0 cm")),expression(paste(dbh>=1,"5 cm"))),pch=c(1,16,16),col=c("black","blue","forestgreen"),cex=0.75)#,title="DBH threshold")
+}
+dev.off()
+
