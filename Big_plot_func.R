@@ -33,25 +33,25 @@ Plot.fn = function(control)
         legend(x="topleft",legend=c("All",expression(paste(dbh>=1,"0 cm")),expression(paste(dbh>=1,"5 cm"))),pch=c(1,16,16),col=c("black","blue","forestgreen"),cex=0.6)#,title="DBH threshold")
     }
   } else if (control == 'BIA_MSE') {
+        par(mfrow=c(4,3), las = 1, mgp = c(2.75, 0.5, 0), mar = c(1.5, 3, 1, 0.75))
       for(i in 1:4)
       {
-        par(mfrow=c(4,3), las = 1, mgp = c(2.75, 0.5, 0), mar = c(1.5, 3, 1, 0.75))
         plot(seq(50,500,50), MSE_Fit_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
         plot(seq(50,500,50), MSE_Fit10_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
         plot(seq(50,500,50), MSE_Fit15_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
       }
     } else if (control == 'BIA_RME') {
+        par(mfrow=c(4,3), las = 1, mgp = c(2.75, 0.5, 0), mar = c(1.5, 3, 1, 0.75))
       for(i in 1:4)
       {
-        par(mfrow=c(4,3), las = 1, mgp = c(2.75, 0.5, 0), mar = c(1.5, 3, 1, 0.75))
         plot(seq(50,500,50), RME_Fit_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
         plot(seq(50,500,50), RME_Fit10_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
         plot(seq(50,500,50), RME_Fit15_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
       }
     } else if (control == 'BIA_RMAE') {
+        par(mfrow=c(4,3), las = 1, mgp = c(2.75, 0.5, 0), mar = c(1.5, 3, 1, 0.75))
       for(i in 1:4)
       {
-        par(mfrow=c(4,3), las = 1, mgp = c(2.75, 0.5, 0), mar = c(1.5, 3, 1, 0.75))
         plot(seq(50,500,50), RMAE_Fit_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
         plot(seq(50,500,50), RMAE_Fit10_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
         plot(seq(50,500,50), RMAE_Fit15_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
@@ -71,6 +71,7 @@ Plot.fn = function(control)
         plot(seq(50,500,50), RME_Fit15_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
       }
     } else if (control == 'GLO_RMAE') { 
+      par(mfrow = c(4,3), las=2,xpd = NA, mgp=c(2.25,0.5,0), mar = c(4,3,1.5, 0.5))
       for(i in 5:12)
       {
         plot(seq(50,500,50), RMAE_Fit_cal.list[,i], type = "l", main = names(MSE_Fit_cal.list)[i], xlab='', ylab='')
