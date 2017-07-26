@@ -6,9 +6,9 @@
 shape.vals<-seq(1,3,.25)
 scale.vals<-seq(20,50,10)
 filepath<-"~/Documents/ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
-filepath<-"../Results/WithPCQDiam/Clumped/"
-source("../cal_function.R")
-source("../ForestReconGitRepo/ForestRecon/BIA_GLO_func.R")
+filepath<-"../../Results/WithPCQDiam/Clumped/"
+source("../ForestRecon/cal_function.R")
+source("../ForestRecon/BIA_GLO_func.R")
 for (ii in 1:length(shape.vals))
 {
   for (jj in 1:length(scale.vals))
