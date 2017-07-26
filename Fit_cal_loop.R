@@ -1,3 +1,4 @@
+##Clumped
 ##Use Fit_cal_function to loop throught everything
 ## first run loop_the_whole_list to get biaglo.list
 
@@ -5,7 +6,11 @@
 #scale.vals<-seq(20,50,20)
 shape.vals<-seq(1,3,.25)
 scale.vals<-seq(20,50,10)
-filepath<-"~/Documents/ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+filepath<-"../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+# filepath<-"~/Documents/ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+source("cal_function.R")
+source("BIA_GLO_func.R")
+
 filepath<-"../Results/WithPCQDiam/Clumped/"
 source("../cal_function.R")
 source("../ForestReconGitRepo/ForestRecon/BIA_GLO_func.R")
@@ -64,6 +69,7 @@ for (ii in 1:length(shape.vals))
     #save(MSE_Fit10_cal.list,file=paste("MSE10_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
     MSE_Fit15_cal.list<-Fit_cal_func.fn(sim_section = Combined_sim15.list,est_section=biaglo.list)
     #save(MSE_Fit15_cal.list,file=paste("MSE15_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
+    MSE_Fitall_cal.list<- list(MSE_Fit_cal.list, MSE_Fit10_cal.list, MSE_Fit15_cal.list)
     
     #RME
     RME_Fit_cal.list<-Fit_cal_func.fn(sim_section = Combined_sim.list, est_section=biaglo.list, fit_cal = "RME")
@@ -72,6 +78,8 @@ for (ii in 1:length(shape.vals))
   #  save(RME_Fit10_cal.list,file=paste("RME10_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
     RME_Fit15_cal.list<-Fit_cal_func.fn(sim_section = Combined_sim15.list, est_section=biaglo.list, fit_cal = "RME")
    # save(RME_Fit15_cal.list,file=paste("RME15_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
+    RME_Fitall_cal.list<- list(RME_Fit_cal.list, RME_Fit10_cal.list, RME_Fit15_cal.list)
+    
     
     #RMAE
     RMAE_Fit_cal.list<-Fit_cal_func.fn(sim_section = Combined_sim.list,est_section=biaglo.list, fit_cal = "RMAE")
@@ -80,11 +88,13 @@ for (ii in 1:length(shape.vals))
     #save(RMAE_Fit10_cal.list,file=paste("RMAE10_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
     RMAE_Fit15_cal.list<-Fit_cal_func.fn(sim_section = Combined_sim15.list,est_section=biaglo.list, fit_cal = "RMAE")
     #save(RMAE_Fit15_cal.list,file=paste("RMAE15_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
+    RMAE_Fitall_cal.list<- list(RMAE_Fit_cal.list, RMAE_Fit10_cal.list, RMAE_Fit15_cal.list)
     
-    save(MSE_Fit_cal.list, MSE_Fit10_cal.list, MSE_Fit15_cal.list, RME_Fit_cal.list, RME_Fit10_cal.list, RME_Fit15_cal.list,
-         RMAE_Fit_cal.list, RMAE_Fit10_cal.list, RMAE_Fit15_cal.list, file=paste("AllFitStats_CombinedShape",shape.vals[ii],
-                                                                                  "Scale",scale.vals[jj],".RData",sep=""))
-    
+    # save when you want to
+    # save(MSE_Fit_cal.list, MSE_Fit10_cal.list, MSE_Fit15_cal.list, RME_Fit_cal.list, RME_Fit10_cal.list, RME_Fit15_cal.list,
+    #      RMAE_Fit_cal.list, RMAE_Fit10_cal.list, RMAE_Fit15_cal.list, file=paste("AllFitStats_CombinedShape",shape.vals[ii],
+    #                                                                               "Scale",scale.vals[jj],".RData",sep=""))
+    # 
     
     ##You need to operate Loop_the_whole_list.R first to get biaglo.list
     # for (index in 2:12)
