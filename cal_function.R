@@ -5,8 +5,8 @@
 # first a line to load the current workspace
 #shape.vals<-seq(1,3,.25)
 #scale.vals<-seq(20,50,10)
-filepath<-"../../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
-load(paste(filepath,"ClumpedShape1Scale20.RData",sep = ""))
+# filepath<-"../../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+# load(paste(filepath,"ClumpedShape1Scale20.RData",sep = ""))
 #load(paste(filepath,"ClumpedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
 ## Modify to use the biaglo list, replacing est_section
 Fit_cal_func.fn<-function(col=12, row=10, sim_section=sim.density.section, 

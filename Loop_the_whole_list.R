@@ -6,6 +6,7 @@ scale.vals<-seq(20,50,10)
 #shape.vals<-seq(1,3,1)
 #scale.vals<-seq(20,50,20)
 filepath<-"../../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+filepath<-"../Results/WithPCQDiam/Clumped/"
 source("../ForestReconGitRepo/ForestRecon/BIA_GLO_func.R")
 source("../ForestReconGitRepo/ForestRecon/Boxplot_func.R")
 for (ii in 1:length(shape.vals))
