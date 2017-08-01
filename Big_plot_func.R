@@ -35,13 +35,13 @@ Plot.fn = function(control)
   }
   
   tickMark <- function(x,y) {
-    if (x > 10) {
+    if (y > 10) {
       roundUpNice((y-x)/6)
     } else if (x > 0){
-      roundUpNiceSmall((y-x)/6)
-    } else {
-      roundUpNiceSmallNeg((y-x)/6)
-    }
+      roundUpNiceSmall((y-x)/6) }
+    # } else {
+    #   roundUpNiceSmallNeg((y-x)/6)
+    # }
   }
   
   if (control == 'true_tph') 
