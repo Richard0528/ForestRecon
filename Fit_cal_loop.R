@@ -1,19 +1,22 @@
-##Clumped
+##Clumped Data
 ##Use Fit_cal_function to loop throught everything
-## first run loop_the_whole_list to get biaglo.list
 
 #shape.vals<-seq(1,3,1)
 #scale.vals<-seq(20,50,20)
 shape.vals<-seq(1,3,.25)
 scale.vals<-seq(20,50,10)
-filepath<-"../../Results/WithPCQDiam/Clumped/" # for MCK computer
+
+# for MCK computer
+filepath<-"../../Results/WithPCQDiam/Clumped/" 
 source("../ForestRecon/cal_function.R")
 source("../ForestRecon/BIA_GLO_func.R")
 filepath<-"../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
 
-filepath<-"~/Documents/ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/" # for Richard computer
-source("cal_function.R")
+# for Richard's
+setwd("/Users/richardyang/documents/GIT/ForestRecon")
+filepath<-"../../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
 source("BIA_GLO_func.R")
+source("cal_function.R")
 
 options.control<-c("true tph","BIA_MSE","BIA_RME","BIA_RMAE","GLO_MSE","GLO_RME","GLO_RMAE","BOX_tph")
 
@@ -83,7 +86,6 @@ for (ii in 1:length(shape.vals))
    # save(RME_Fit15_cal.list,file=paste("RME15_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
     RME_Fitall_cal.list<- list(RME_Fit_cal.list, RME_Fit10_cal.list, RME_Fit15_cal.list)
     
-    
     #RMAE
     RMAE_Fit_cal.list<-Fit_cal_func.fn(sim_section = Combined_sim.list,est_section=biaglo.list, fit_cal = "RMAE")
     #save(RMAE_Fit_cal.list,file=paste("RMAE_CombinedShape",shape.vals[ii],"Scale",scale.vals[jj],".RData",sep=""))
@@ -98,10 +100,12 @@ for (ii in 1:length(shape.vals))
     #      RMAE_Fit_cal.list, RMAE_Fit10_cal.list, RMAE_Fit15_cal.list, file=paste("AllFitStats_CombinedShape",shape.vals[ii],
     #                                                                               "Scale",scale.vals[jj],".RData",sep=""))
     
-    pdf(file=paste("ClumpedFitStatsScale",scale.vals[jj],"Shape",shape.vals[ii],".pdf",sep=""))
-    for(mm in options.control)
-      Plot.fn(mm)
-    dev.off()
+    ## for save as pdf
+    # pdf(file=paste("ClumpedFitStatsScale",scale.vals[jj],"Shape",shape.vals[ii],".pdf",sep=""))
+    # for(mm in options.control)
+    #   Plot.fn(mm)
+    # dev.off()
     
   }
 }
+
