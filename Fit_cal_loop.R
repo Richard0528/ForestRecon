@@ -10,7 +10,7 @@ scale.vals<-seq(20,50,10)
 filepath<-"../../Results/WithPCQDiam/Clumped/" 
 source("../ForestRecon/cal_function.R")
 source("../ForestRecon/BIA_GLO_func.R")
-filepath<-"../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
+#filepath<-"../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
 
 # for Richard's
 setwd("/Users/richardyang/documents/GIT/ForestRecon")
@@ -18,7 +18,7 @@ filepath<-"../../ForestReconstructionSim/SimResults/WithPCQDiam/Clumped/"
 source("BIA_GLO_func.R")
 source("cal_function.R")
 
-options.control<-c("true tph","BIA_MSE","BIA_RME","BIA_RMAE","GLO_MSE","GLO_RME","GLO_RMAE","BOX_tph")
+options.control<-c("true_tph","BIA_MSE","BIA_RME","BIA_RMAE","GLO_MSE","GLO_RME","GLO_RMAE","BOX_tph")
 
 for (ii in 1:length(shape.vals))
 {
