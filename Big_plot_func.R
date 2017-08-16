@@ -96,7 +96,7 @@ Plot.fn = function(control)
       
     } else if (control == 'BIA_GLO_MSE') {
       ## adj =0 for left align, las =1 for label horizantal, mgp for title and label distance, mar for plots area, oma for outer area
-      par(mfrow = c(3,2), las = 1, adj=0, mgp = c(1, 0.5, 0), mar = c(1.5, 0, 1.25, 0), oma=c(1.5,3.4,2,0))
+      par(mfrow = c(3,2), las = 1, adj=0, mgp = c(1, 0.5, 0), mar = c(1.5, 0, 1.25, 0), oma=c(1.5,3.4,2,1))
       all.cols = c("black","blue","forestgreen","red", "orange", "purple")
       count<- c("all", "10", "15")
       for(i in 1:3)
@@ -116,10 +116,11 @@ Plot.fn = function(control)
         ## add more lines
         for(j in 2:4) {
           lines(seq(50,500,50), MSE_Fitall_cal.list[[i]][,j], col=all.cols[j])
+          box()
         }
         ## add legend for BIA plots
         if(i==1)
-          legend(x="topleft",legend=c("BIASec","BIAqq","BIAq", "BIAt"),pch=c(1,16,16),col=c("black","blue","forestgreen","red"),cex=0.4)
+          legend(x="topleft",legend=c("BIASec","BIAqq","BIAq", "BIAt"),pch=c(1,16,16),col=c("black","blue","forestgreen","red"),cex=0.5)
         
         ## for GLO
         plot(seq(50,500,50), MSE_Fitall_cal.list[[i]][,5], axes = FALSE, type = "l",
@@ -131,17 +132,19 @@ Plot.fn = function(control)
         ## add more lines
         for(jj in 6:10) {
           lines(seq(50,500,50), MSE_Fitall_cal.list[[i]][,jj], col=all.cols[jj-4])
+          box()
         }
         ## add legends for GLO plots
         if(i==1)
-          legend(x="topleft",legend=names(MSE_Fit_cal.list[5:10]),pch=c(1,16,16),col=c("black","blue","forestgreen","red","orange", "purple"),cex=0.3)
+          legend(x="topleft",legend=names(MSE_Fit_cal.list[5:10]),pch=c(1,16,16),col=c("black","blue","forestgreen","red","orange", "purple"),cex=0.4)
       }
       mtext("BIA&GLO -MSE for Different tree diameters", las=1, side=3, adj=0.5, col="red", outer=TRUE)
       mtext("True Tph", las = 1, side = 1, adj = 0.5, cex = 0.7, outer = TRUE)
       
       
+      
     } else if (control == 'BIA_GLO_RME') {
-      par(mfrow = c(3,2), las = 1, adj=0, mgp = c(2.5, 0.5, 0), mar =c(1.5, 0, 1.25, 0), oma=c(1.5,3,2,0))
+      par(mfrow = c(3,2), las = 1, adj=0, mgp = c(2.5, 0.5, 0), mar =c(1.5, 0, 1.25, 0), oma=c(1.5,3,2,1))
       all.cols = c("black","blue","forestgreen","red", "orange", "purple")
       count<- c("all", "10", "15")
       for(i in 1:3)
@@ -161,10 +164,11 @@ Plot.fn = function(control)
         
         for (j in 2:4) {
           lines(seq(50,500,50), RME_Fitall_cal.list[[i]][,j], col=all.cols[j])
+          box()
         }
         
         if(i==1)
-          legend(x="topleft",legend=c("BIASec","BIAqq","BIAq", "BIAt"),pch=c(1,16,16),col=all.cols[1:4],cex=0.4)
+          legend(x="topleft",legend=c("BIASec","BIAqq","BIAq", "BIAt"),pch=c(1,16,16),col=all.cols[1:4],cex=0.5)
         
         ## for GLO
         plot(seq(50,500,50), RME_Fitall_cal.list[[i]][,5], axes = FALSE, type = "l",
@@ -175,17 +179,19 @@ Plot.fn = function(control)
         
         for(jj in 6:10){
           lines(seq(50,500,50), RME_Fitall_cal.list[[i]][,jj], col=all.cols[jj-4])
+          box()
         }
         
         if(i==1)
-          legend(x="topleft",legend=names(MSE_Fit_cal.list[5:10]),pch=c(1,16,16),col=all.cols,cex=0.3)
+          legend(x="topleft",legend=names(MSE_Fit_cal.list[5:10]),pch=c(1,16,16),col=all.cols,cex=0.4)
       }
       mtext("BIA&GLO -RME for Different tree diameters", las=1, side=3, adj=0.5, col="red", outer=TRUE)
       mtext("True Tph", las = 1, side = 1, adj = 0.5, cex = 0.7, outer = TRUE)
+      box()
       
       
     } else if (control == 'BIA_GLO_RMAE') {
-      par(mfrow = c(3,2), las = 1, adj=0, mgp = c(1, 0.5, 0), mar = c(2, 0, 3, 0), oma=c(1.5,2.5,2,0))
+      par(mfrow = c(3,2), las = 1, adj=0, mgp = c(1, 0.5, 0), mar = c(2, 0, 3, 0), oma=c(1.5,2.5,2,1))
       all.cols = c("black","blue","forestgreen","red", "orange", "purple")
       count<- c("all", "10", "15")
       for(i in 1:3)
@@ -204,10 +210,11 @@ Plot.fn = function(control)
         
         for(j in 2:4) {
           lines(seq(50,500,50), RMAE_Fitall_cal.list[[i]][,j], col=all.cols[j])
+          box()
         }
        
         if(i==1)
-          legend(x="topleft",legend=c("BIASec","BIAqq","BIAq", "BIAt"),pch=c(1,16,16),col=all.cols[1:4],cex=0.4)
+          legend(x="topleft",legend=c("BIASec","BIAqq","BIAq", "BIAt"),pch=c(1,16,16),col=all.cols[1:4],cex=0.5)
         
         ## for GLO
         plot(seq(50,500,50), MSE_Fitall_cal.list[[i]][,5], axes = FALSE, type = "l",
@@ -218,14 +225,16 @@ Plot.fn = function(control)
         
         for(jj in 6:10) {
           lines(seq(50,500,50), RMAE_Fitall_cal.list[[i]][,jj], col=all.cols[jj-4])
+          box()
         }
     
         if(i==1)
-          legend(x="topleft",legend=names(MSE_Fit_cal.list[5:10]),pch=c(1,16,16),col=all.cols,cex=0.3)
+          legend(x="topleft",legend=names(MSE_Fit_cal.list[5:10]),pch=c(1,16,16),col=all.cols,cex=0.4)
       }
       mtext("BIA&GLO -RMAE for different tree diameters", las=1, side=3, adj=0.5, col="red", outer=TRUE)
       mtext("True Tph", las = 1, side = 1, adj = 0.5, cex = 0.7, outer = TRUE)
-
+      box()
+      
       
     }
   
